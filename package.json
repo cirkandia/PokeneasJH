@@ -1,7 +1,7 @@
 {
-  "name": "pokedex",
+  "name": "PokeneasJHMV",
   "version": "1.0.0",
-  "description": "Pokedex de Pokeneas",
+  "description": "PokeneasJHMV",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
