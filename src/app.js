@@ -6,13 +6,7 @@ const helmet = require('helmet');
 const app = express();
 
 app.use((req, res, next) => {
-
-  res.header('Content-Security-Policy', "img-src 'self'");
-  next();
-});
-
-app.use((req, res, next) => {
-  res.header('Content-Security-Policy', "img-src 'self'");
+  res.header('Content-Security-Policy', "img-src 'self' https://pokeneasjhmv.s3.us-east-1.amazonaws.com");
   next();
 });
 
