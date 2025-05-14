@@ -6,21 +6,13 @@ const helmet = require('helmet');
 const app = express();
 
 app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; " +
-    "img-src 'self' data: https://*.s3.us-east-1.amazonaws.com https://*.s3.amazonaws.com; " +
-    "style-src 'self' 'unsafe-inline'; " +
-    "script-src 'self'"
-  );
+
+  res.header('Content-Security-Policy', "img-src 'self'");
   next();
 });
 
 app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; img-src 'self' data: https://pokeneasjhmv.s3.amazonaws.com;"
-  );
+  res.header('Content-Security-Policy', "img-src 'self'");
   next();
 });
 
