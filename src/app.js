@@ -5,6 +5,25 @@ const helmet = require('helmet');
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; " +
+    "img-src 'self' data: https://*.s3.us-east-1.amazonaws.com https://*.s3.amazonaws.com; " +
+    "style-src 'self' 'unsafe-inline'; " +
+    "script-src 'self'"
+  );
+  next();
+});
+
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; img-src 'self' data: https://pokeneasjhmv.s3.amazonaws.com;"
+  );
+  next();
+});
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -21,14 +40,6 @@ app.use((req, res, next) => {
 
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
-});
-
-app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; img-src 'self' data: https://pokeneasjhmv.s3.amazonaws.com;"
-  );
-  next();
 });
 
 app.use((err, req, res, next) => {
