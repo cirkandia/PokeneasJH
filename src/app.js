@@ -5,10 +5,16 @@ const helmet = require('helmet');
 
 const app = express();
 
-app.use((req, res, next) => {
-  res.header('Content-Security-Policy', "img-src 'self' https://pokeneasjhmv.s3.us-east-1.amazonaws.com");
-  next();
-});
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "default-src": ["'self'"],
+        "img-src": ["'self'", "https://*.s3.us-east-1.amazonaws.com", "data:"],
+      },
+    },
+  })
+);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -16,7 +22,6 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(helmet());
 
 app.use('/', pokeneaRoutes);
 
