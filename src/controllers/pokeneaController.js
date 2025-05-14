@@ -30,7 +30,8 @@ function getPokeneaView(req, res) {
         res.render('pokenea', {
             imagen: pokenea.imagen,
             fraseFilosofica: pokenea.fraseFilosofica,
-            containerId: containerInfo.containerId
+            containerId: containerInfo.containerId,
+            nombre: pokenea.nombre
         });
     } catch (error) {
         res.status(500).send("Ocurrió un error al renderizar la vista.");

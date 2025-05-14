@@ -46,12 +46,16 @@
 </head>
 <body>
     <main class="container">
-        <h1>Pokenea Filosófico</h1>
-        <img src="<%= imagen || 'https://via.placeholder.com/150' %>" alt="<%= fraseFilosofica || 'Imagen de Pokenea' %>" loading="lazy">
+        <h1><%= nombre %></h1>
+        <img 
+            src="<%= imagen %>" 
+            alt="Pokenea <%= nombre %>" 
+            class="pokenea-img"
+            loading="lazy"
+            onerror="this.src='https://via.placeholder.com/500x300?text=Imagen+no+disponible'"
+        >
         <div class="quote">"<%= fraseFilosofica %>"</div>
-        <div class="container-id">
-            Contenedor ID: <%= containerId || "No disponible" %>
-        </div>
+        <div class="container-id">Contenedor ID: <%= containerId %></div>
     </main>
 </body>
 </html>
