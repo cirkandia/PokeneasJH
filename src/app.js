@@ -19,6 +19,18 @@ app.use((req, res, next) => {
     res.status(404).send("Lo siento, no encontramos esa ruta!");
 });
 
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
+});
+
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; img-src 'self' data: https://pokeneasjhmv.s3.amazonaws.com;"
+  );
+  next();
+});
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Algo salió mal!');
